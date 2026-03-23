@@ -5,8 +5,6 @@ export default function Hero() {
     <section className="py-16 md:py-24">
       <div className="mx-auto w-full max-w-6xl px-6 md:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          
-          {/* TEXTO */}
           <div>
             <span className="inline-flex rounded-full bg-[#E8DCCB] px-4 py-2 text-sm text-[#4A2E1F]">
               Hecho en casa • Pensado en grande
@@ -39,7 +37,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* VISUAL */}
           <div className="rounded-[2rem] border border-[#E8DCCB] bg-[#F8F2E9] p-6 shadow-[0_20px_60px_rgba(74,46,31,0.08)]">
             <div className="rounded-[1.5rem] bg-[#F4EEE6] p-6">
               <div className="flex min-h-[360px] items-center justify-center rounded-[1.25rem] border border-dashed border-[#DDB45A]/50 bg-[#FFF9F2] text-center">
@@ -57,7 +54,6 @@ export default function Hero() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

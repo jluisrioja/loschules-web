@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Los Chules",
   description:
-    "Los Chules es una marca en construcción que empieza con snacks artesanales y evoluciona hacia un ecosistema de productos para perritos y sus familias.",
+    "Snacks artesanales para perros hechos con amor. Empezamos con panqueques y estamos construyendo un ecosistema para perritos felices.",
 };
 
 export default function RootLayout({
@@ -28,7 +29,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F3E7D3] text-[#4A2E1F]`}
       >
-        {children}
+        <Header />
+        <main className="pt-24">{children}</main>
       </body>
     </html>
   );
