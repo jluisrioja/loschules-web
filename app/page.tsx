@@ -54,9 +54,7 @@ export default function HomePage() {
                   className="mx-auto h-auto w-full max-w-[320px] object-contain transition duration-300 hover:scale-[1.02]"
                   priority
                 />
-                <p className="mt-6 text-sm text-[#4A2E1F]/55">
-                  espacio visual principal para logo grande
-                </p>
+
               </div>
             </div>
           </div>
