@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
+import SkipLink from "@/components/layout/SkipLink";
 import { SITE_NAME, openGraphBase } from "@/lib/metadata";
 import { SITE_URL } from "@/lib/site";
 
@@ -37,8 +38,11 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased bg-[#F3E7D3] text-[#4A2E1F]`}
       >
+        <SkipLink />
         <Header />
-        <main className="pt-24">{children}</main>
+        <main id="contenido" tabIndex={-1} className="pt-24 outline-none">
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>

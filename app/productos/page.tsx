@@ -94,7 +94,7 @@ export default function ProductosPage() {
                     alt="Detalle 1 de ChulePancakes"
                     width={320}
                     height={320}
-                    className="h-auto w-full max-w-[220px] object-contain transition duration-200 hover:scale-[1.03]"
+                    className="h-auto w-full max-w-[220px] object-contain transition duration-200 motion-safe:hover:scale-[1.03]"
                   />
                 </div>
               </div>
@@ -106,7 +106,7 @@ export default function ProductosPage() {
                     alt="Detalle 2 de ChulePancakes"
                     width={320}
                     height={320}
-                    className="h-auto w-full max-w-[220px] object-contain transition duration-200 hover:scale-[1.03]"
+                    className="h-auto w-full max-w-[220px] object-contain transition duration-200 motion-safe:hover:scale-[1.03]"
                   />
                 </div>
               </div>
@@ -136,21 +136,21 @@ export default function ProductosPage() {
                 <p className="text-6xl font-semibold tracking-tight">
                   {PRODUCT.priceLabel}
                 </p>
-                <p className="mt-2 text-base text-[#4A2E1F]/70">+ delivery</p>
+                <p className="mt-2 text-base text-[#4A2E1F]/75">+ delivery</p>
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <WhatsAppLink
                   message={WHATSAPP_MESSAGES.pedido}
                   origen="producto"
-                  className="rounded-full bg-[#4A2E1F] px-7 py-3.5 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
+                  className="rounded-full bg-[#4A2E1F] px-7 py-3.5 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:opacity-95"
                 >
                   Pedir por WhatsApp
                 </WhatsAppLink>
 
                 <Link
                   href="/contacto"
-                  className="rounded-full border border-[#4A2E1F]/15 bg-white/70 px-6 py-3.5 text-sm font-medium shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white"
+                  className="rounded-full border border-[#4A2E1F]/15 bg-white/70 px-6 py-3.5 text-sm font-medium shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:bg-white"
                 >
                   Contacto
                 </Link>
@@ -189,7 +189,7 @@ export default function ProductosPage() {
                 <WhatsAppLink
                   message={WHATSAPP_MESSAGES.pedido}
                   origen="producto"
-                  className="inline-flex rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
+                  className="inline-flex rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:opacity-95"
                 >
                   Ir a WhatsApp
                 </WhatsAppLink>
@@ -222,7 +222,7 @@ export default function ProductosPage() {
         {/* CIERRE */}
         <div className="mt-16 rounded-[2rem] bg-[#4A2E1F] px-8 py-12 text-center text-[#F3E7D3] shadow-[0_20px_55px_rgba(74,46,31,0.2)] md:px-12">
           <h2 className="text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
-            ChulePancakes, hechos con amor 🐾
+            ChulePancakes, hechos con amor <span aria-hidden="true">🐾</span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#F3E7D3]/80 md:text-base">
@@ -233,14 +233,14 @@ export default function ProductosPage() {
             <WhatsAppLink
               message={WHATSAPP_MESSAGES.pedido}
               origen="cierre"
-              className="rounded-full bg-[#DDB45A] px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
+              className="rounded-full bg-[#DDB45A] px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.02]"
             >
               Pedir ahora
             </WhatsAppLink>
 
             <Link
               href="/contacto"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium transition duration-200 hover:-translate-y-0.5 hover:bg-white/10"
+              className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium transition duration-200 motion-safe:hover:-translate-y-0.5 hover:bg-white/10"
             >
               Contacto
             </Link>

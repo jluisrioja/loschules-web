@@ -22,14 +22,14 @@ export default function NotFound() {
         <div className="mt-9 flex flex-wrap gap-4">
           <Link
             href="/"
-            className="rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
+            className="rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:opacity-95"
           >
             Inicio
           </Link>
 
           <Link
             href="/productos"
-            className="rounded-full border border-[#4A2E1F]/15 bg-white/60 px-6 py-3 text-sm font-medium shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white"
+            className="rounded-full border border-[#4A2E1F]/15 bg-white/60 px-6 py-3 text-sm font-medium shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:bg-white"
           >
             Ver productos
           </Link>

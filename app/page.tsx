@@ -21,7 +21,7 @@ export default function HomePage() {
             </p>
 
             <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-              Momentos felices, juntos 🐾
+              Momentos felices, juntos <span aria-hidden="true">🐾</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-8 text-[#4A2E1F]/80">
@@ -32,14 +32,14 @@ export default function HomePage() {
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
                 href="/productos"
-                className="rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
+                className="rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:opacity-95"
               >
                 Conócenos
               </Link>
 
               <Link
                 href="/productos"
-                className="rounded-full border border-[#4A2E1F]/15 bg-white/60 px-6 py-3 text-sm font-medium shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white"
+                className="rounded-full border border-[#4A2E1F]/15 bg-white/60 px-6 py-3 text-sm font-medium shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:bg-white"
               >
                 Ver productos
               </Link>
@@ -59,7 +59,7 @@ export default function HomePage() {
                   alt="Los Chules"
                   width={320}
                   height={320}
-                  className="mx-auto h-auto w-full max-w-[320px] object-contain transition duration-300 hover:scale-[1.02]"
+                  className="mx-auto h-auto w-full max-w-[320px] object-contain transition duration-300 motion-safe:hover:scale-[1.02]"
                   priority
                 />
 
@@ -102,7 +102,7 @@ export default function HomePage() {
             <div className="mt-6">
               <Link
                 href="/productos"
-                className="inline-flex rounded-full border border-[#4A2E1F]/15 bg-white/70 px-5 py-2.5 text-sm font-medium shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white"
+                className="inline-flex rounded-full border border-[#4A2E1F]/15 bg-white/70 px-5 py-2.5 text-sm font-medium shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:bg-white"
               >
                 Conoce nuestra historia
               </Link>
@@ -126,7 +126,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-3 md:gap-8">
-          <div className="rounded-[1.5rem] border border-[#4A2E1F]/10 bg-white/55 p-6 shadow-[0_8px_24px_rgba(74,46,31,0.04)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(74,46,31,0.08)]">
+          <div className="rounded-[1.5rem] border border-[#4A2E1F]/10 bg-white/55 p-6 shadow-[0_8px_24px_rgba(74,46,31,0.04)] transition duration-200 motion-safe:hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(74,46,31,0.08)]">
             <h3 className="text-lg font-semibold">Nuevos productos</h3>
             <p className="mt-3 text-sm leading-7 text-[#4A2E1F]/75">
               Seguiremos ampliando la marca con propuestas pensadas para la vida
@@ -134,7 +134,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="rounded-[1.5rem] border border-[#4A2E1F]/10 bg-white/55 p-6 shadow-[0_8px_24px_rgba(74,46,31,0.04)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(74,46,31,0.08)]">
+          <div className="rounded-[1.5rem] border border-[#4A2E1F]/10 bg-white/55 p-6 shadow-[0_8px_24px_rgba(74,46,31,0.04)] transition duration-200 motion-safe:hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(74,46,31,0.08)]">
             <h3 className="text-lg font-semibold">Accesorios</h3>
             <p className="mt-3 text-sm leading-7 text-[#4A2E1F]/75">
               Queremos crecer hacia una línea con identidad, utilidad y un estilo
@@ -142,7 +142,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="rounded-[1.5rem] border border-[#4A2E1F]/10 bg-white/55 p-6 shadow-[0_8px_24px_rgba(74,46,31,0.04)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(74,46,31,0.08)]">
+          <div className="rounded-[1.5rem] border border-[#4A2E1F]/10 bg-white/55 p-6 shadow-[0_8px_24px_rgba(74,46,31,0.04)] transition duration-200 motion-safe:hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(74,46,31,0.08)]">
             <h3 className="text-lg font-semibold">Experiencias</h3>
             <p className="mt-3 text-sm leading-7 text-[#4A2E1F]/75">
               Más que productos, buscamos construir momentos que fortalezcan el
@@ -156,7 +156,7 @@ export default function HomePage() {
       <section className="px-6 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-5xl rounded-[2rem] bg-[#4A2E1F] px-8 py-12 text-center text-[#F3E7D3] shadow-[0_20px_55px_rgba(74,46,31,0.2)] md:px-12 md:py-14">
           <h2 className="text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
-            Haz feliz a quien te acompaña cada día 🐾
+            Haz feliz a quien te acompaña cada día <span aria-hidden="true">🐾</span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#F3E7D3]/80 md:text-base">
@@ -167,14 +167,14 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/productos"
-              className="rounded-full bg-[#DDB45A] px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
+              className="rounded-full bg-[#DDB45A] px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.02]"
             >
               Ver productos
             </Link>
 
             <Link
               href="/contacto"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium transition duration-200 hover:-translate-y-0.5 hover:bg-white/10"
+              className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium transition duration-200 motion-safe:hover:-translate-y-0.5 hover:bg-white/10"
             >
               Contacto
             </Link>

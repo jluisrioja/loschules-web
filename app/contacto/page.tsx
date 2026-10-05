@@ -48,7 +48,7 @@ export default function ContactoPage() {
               <WhatsAppLink
                 message={WHATSAPP_MESSAGES.info}
                 origen="contacto"
-                className="inline-flex rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
+                className="inline-flex rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:opacity-95"
               >
                 Escríbenos por WhatsApp
               </WhatsAppLink>
@@ -68,7 +68,7 @@ export default function ContactoPage() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex rounded-full border border-[#4A2E1F]/15 bg-white/70 px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white"
+                className="inline-flex rounded-full border border-[#4A2E1F]/15 bg-white/70 px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 motion-safe:hover:-translate-y-0.5 hover:bg-white"
               >
                 Ver Instagram
               </a>
