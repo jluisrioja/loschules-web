@@ -1,6 +1,12 @@
 ﻿import Link from "next/link";
 import Image from "next/image";
-import { WHATSAPP_DISPLAY, WHATSAPP_MESSAGES, whatsappUrl } from "@/lib/site";
+import {
+  PRODUCT,
+  TEL_URL,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_MESSAGES,
+  whatsappUrl,
+} from "@/lib/site";
 
 export default function ProductosPage() {
   return (
@@ -85,7 +91,9 @@ export default function ProductosPage() {
               </div>
 
               <div className="mt-8">
-                <p className="text-6xl font-semibold tracking-tight">S/ 18</p>
+                <p className="text-6xl font-semibold tracking-tight">
+                  {PRODUCT.priceLabel}
+                </p>
                 <p className="mt-2 text-base text-[#4A2E1F]/70">+ delivery</p>
               </div>
 
@@ -131,7 +139,9 @@ export default function ProductosPage() {
               </p>
 
               <p className="mt-2 text-4xl font-semibold tracking-tight">
-                {WHATSAPP_DISPLAY}
+                <a href={TEL_URL} className="hover:underline">
+                  {WHATSAPP_DISPLAY}
+                </a>
               </p>
 
               <div className="mt-8">
@@ -197,7 +207,31 @@ export default function ProductosPage() {
             </Link>
           </div>
         </div>
+
+        {/* Reserva el alto de la barra fija para que no tape el final */}
+        <div aria-hidden="true" className="h-20 lg:hidden" />
       </section>
+
+      {/* BARRA FIJA MOBILE */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#E8DCCB] bg-[#F3E7D3]/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur lg:hidden">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
+          <div className="min-w-0 leading-tight">
+            <p className="truncate text-sm font-semibold">{PRODUCT.name}</p>
+            <p className="text-sm text-[#4A2E1F]/80">
+              {PRODUCT.priceLabel} + delivery
+            </p>
+          </div>
+
+          <a
+            href={whatsappUrl(WHATSAPP_MESSAGES.pedido)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 rounded-full bg-[#4A2E1F] px-5 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm"
+          >
+            Pedir por WhatsApp
+          </a>
+        </div>
+      </div>
     </main>
   );
 }

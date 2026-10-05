@@ -1,6 +1,7 @@
 ﻿import {
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
+  TEL_URL,
   WHATSAPP_DISPLAY_INTERNATIONAL,
   WHATSAPP_MESSAGES,
   whatsappUrl,
@@ -31,7 +32,9 @@ export default function ContactoPage() {
             <div className="text-3xl">💬</div>
             <h2 className="mt-4 text-2xl font-semibold">WhatsApp</h2>
             <p className="mt-4 text-base leading-8 text-[#4A2E1F]/80">
-              {WHATSAPP_DISPLAY_INTERNATIONAL}
+              <a href={TEL_URL} className="hover:underline">
+                {WHATSAPP_DISPLAY_INTERNATIONAL}
+              </a>
             </p>
 
             <div className="mt-6">

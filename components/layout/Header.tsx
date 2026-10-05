@@ -8,7 +8,6 @@ import { WHATSAPP_MESSAGES, whatsappUrl } from "@/lib/site";
 
 const navItems = [
   { label: "Inicio", href: "/" },
-  { label: "Nosotros", href: "/nosotros" },
   { label: "Productos", href: "/productos" },
   { label: "Contacto", href: "/contacto" },
 ];
@@ -34,7 +33,7 @@ export default function Header() {
             className="h-[40px] w-[40px] object-contain"
             priority
           />
-          <span className="text-base font-semibold tracking-tight text-[#4A2E1F]">
+          <span className="text-base font-semibold tracking-tight text-[#4A2E1F] max-[359px]:sr-only">
             Los Chules
           </span>
         </Link>
@@ -60,26 +59,28 @@ export default function Header() {
           })}
         </nav>
 
-        {/* CTA DESKTOP */}
-        <a
-          href={whatsappUrl(WHATSAPP_MESSAGES.info)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden rounded-full bg-[#DDB45A] px-5 py-2 text-sm font-medium text-[#4A2E1F] shadow-sm transition hover:scale-[1.03] md:inline-flex"
-        >
-          Pedir ahora
-        </a>
+        <div className="flex items-center gap-2">
+          {/* CTA (visible también en móvil) */}
+          <a
+            href={whatsappUrl(WHATSAPP_MESSAGES.info)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex rounded-full bg-[#DDB45A] px-4 py-2 text-sm font-medium text-[#4A2E1F] shadow-sm transition hover:scale-[1.03] md:px-5"
+          >
+            Pedir ahora
+          </a>
 
-        {/* BOTÓN MOBILE */}
-        <button
-          type="button"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={open}
-          onClick={() => setOpen((prev) => !prev)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#4A2E1F]/10 bg-white/50 text-[#4A2E1F] md:hidden"
-        >
-          <span className="text-xl leading-none">{open ? "✕" : "☰"}</span>
-        </button>
+          {/* BOTÓN MOBILE */}
+          <button
+            type="button"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
+            onClick={() => setOpen((prev) => !prev)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#4A2E1F]/10 bg-white/50 text-[#4A2E1F] md:hidden"
+          >
+            <span className="text-xl leading-none">{open ? "✕" : "☰"}</span>
+          </button>
+        </div>
       </div>
 
       {/* MENÚ MOBILE */}
