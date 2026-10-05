@@ -1,5 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { SITE_NAME, pageMetadata } from "@/lib/metadata";
+
+// El template del layout no se aplica a su propio segmento: el título lleva la marca explícita.
+export const metadata = pageMetadata({
+  title: `Momentos felices, juntos | ${SITE_NAME}`,
+  description:
+    "Los Chules es una marca artesanal inspirada en nuestros perros, Chuletas y Lobito.",
+});
 
 export default function HomePage() {
   return (

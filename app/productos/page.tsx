@@ -1,16 +1,57 @@
 ﻿import Link from "next/link";
 import Image from "next/image";
 import {
+  INSTAGRAM_URL,
   PRODUCT,
+  SITE_URL,
   TEL_URL,
   WHATSAPP_DISPLAY,
   WHATSAPP_MESSAGES,
 } from "@/lib/site";
 import WhatsAppLink from "@/components/WhatsAppLink";
+import { SITE_NAME, pageMetadata } from "@/lib/metadata";
+
+const description =
+  "Empezamos con ChulePancakes de plátano, hechos en casa y pensados para compartir un momento especial.";
+
+export const metadata = pageMetadata({ title: PRODUCT.name, description });
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo.png`,
+      sameAs: [INSTAGRAM_URL],
+    },
+    {
+      "@type": "Product",
+      name: PRODUCT.name,
+      description,
+      image: `${SITE_URL}/products/chulepancakes-platano/cover.png`,
+      brand: { "@id": `${SITE_URL}/#organization` },
+      offers: {
+        "@type": "Offer",
+        price: String(PRODUCT.price),
+        priceCurrency: PRODUCT.currency,
+        url: `${SITE_URL}/productos`,
+      },
+    },
+  ],
+};
 
 export default function ProductosPage() {
   return (
     <main className="bg-[#F3E7D3] text-[#4A2E1F]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <section className="mx-auto max-w-6xl px-6 pb-16 pt-28 md:px-10 md:pb-20 md:pt-32">
         {/* ENCABEZADO */}
         <div className="max-w-3xl">
@@ -75,6 +116,7 @@ export default function ProductosPage() {
           {/* COLUMNA INFO */}
           <div className="rounded-[2rem] border border-[#4A2E1F]/10 bg-white/55 p-8 shadow-[0_14px_36px_rgba(74,46,31,0.08)] md:p-10">
             <div className="max-w-xl">
+              <h2 className="sr-only">{PRODUCT.name}</h2>
               <Image
                 src="/products/chulepancakes-platano/title.svg"
                 alt="ChulePancakes"

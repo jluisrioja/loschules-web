@@ -6,6 +6,13 @@
   WHATSAPP_MESSAGES,
 } from "@/lib/site";
 import WhatsAppLink from "@/components/WhatsAppLink";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Contacto",
+  description:
+    "¿Quieres pedir, hacer una consulta o saber más sobre Los Chules? Escríbenos y estaremos felices de ayudarte.",
+});
 
 export default function ContactoPage() {
   return (
