@@ -4,8 +4,10 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import SkipLink from "@/components/layout/SkipLink";
+import Footer from "@/components/layout/Footer";
+import { tieneNovedades } from "@/lib/novedades";
 import { SITE_NAME, openGraphBase } from "@/lib/metadata";
-import { SITE_URL } from "@/lib/site";
+import { INSTAGRAM_URL, SITE_URL } from "@/lib/site";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,7 +16,18 @@ const poppins = Poppins({
 });
 
 const description =
-  "Marca para perros hecha con amor. Empezamos con Chule Pancakes y seguimos construyendo productos para momentos felices con tu perro.";
+  "Marca artesanal peruana para perros. Productos artesanales, el podcast de Chuletas y Lobito y las novedades de la familia.";
+
+// Organization global; las páginas la referencian por @id (p. ej. brand del Product).
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  sameAs: [INSTAGRAM_URL],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,11 +51,23 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased bg-[#F3E7D3] text-[#4A2E1F]`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <SkipLink />
-        <Header />
-        <main id="contenido" tabIndex={-1} className="pt-52 outline-none md:pt-56">
+        <Header mostrarNovedades={tieneNovedades()} />
+        {/* Las páginas sin cabecera (data-sin-cabecera, p. ej. /enlaces) no llevan el hueco superior. */}
+        <main
+          id="contenido"
+          tabIndex={-1}
+          className="pt-52 outline-none md:pt-56 has-[[data-sin-cabecera]]:pt-0 md:has-[[data-sin-cabecera]]:pt-0"
+        >
           {children}
         </main>
+        <Footer mostrarNovedades={tieneNovedades()} />
         <Analytics />
       </body>
     </html>

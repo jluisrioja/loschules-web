@@ -16,7 +16,6 @@ import {
   type SaborActivo,
 } from "@/lib/productos";
 import {
-  INSTAGRAM_URL,
   SITE_URL,
   TEL_URL,
   WHATSAPP_DISPLAY,
@@ -49,33 +48,22 @@ function jsonLd(linea: Linea) {
   const activos = saboresActivos(linea);
   const url = `${SITE_URL}/productos/${linea.slug}`;
 
+  // La Organization está en el layout; aquí solo se referencia por @id.
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${SITE_URL}/#organization`,
-        name: SITE_NAME,
-        url: SITE_URL,
-        logo: `${SITE_URL}/logo.png`,
-        sameAs: [INSTAGRAM_URL],
-      },
-      {
-        "@type": "Product",
-        name: linea.nombre,
-        description: activos.map(descripcionSabor).join(" "),
-        image: `${SITE_URL}${linea.portada.src}`,
-        url,
-        brand: { "@id": `${SITE_URL}/#organization` },
-        offers: activos.map((sabor) => ({
-          "@type": "Offer",
-          name: nombreProducto(linea, sabor),
-          price: String(sabor.precio),
-          priceCurrency: "PEN",
-          url: `${url}?sabor=${sabor.id}`,
-        })),
-      },
-    ],
+    "@type": "Product",
+    name: linea.nombre,
+    description: activos.map(descripcionSabor).join(" "),
+    image: `${SITE_URL}${linea.portada.src}`,
+    url,
+    brand: { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: SITE_NAME },
+    offers: activos.map((sabor) => ({
+      "@type": "Offer",
+      name: nombreProducto(linea, sabor),
+      price: String(sabor.precio),
+      priceCurrency: "PEN",
+      url: `${url}?sabor=${sabor.id}`,
+    })),
   };
 }
 
