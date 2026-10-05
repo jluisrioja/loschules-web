@@ -78,8 +78,9 @@ export default function ProductosPage() {
                 <Image
                   src="/products/chulepancakes-platano/cover.png"
                   alt="ChulePancakes de plátano"
-                  width={520}
-                  height={520}
+                  width={1200}
+                  height={1600}
+                  sizes="(max-width: 524px) calc(100vw - 144px), 380px"
                   className="h-auto w-full max-w-[380px] object-contain"
                   priority
                 />
@@ -92,8 +93,9 @@ export default function ProductosPage() {
                   <Image
                     src="/products/chulepancakes-platano/detail-1.png"
                     alt="Detalle 1 de ChulePancakes"
-                    width={320}
-                    height={320}
+                    width={1200}
+                    height={1600}
+                    sizes="220px"
                     className="h-auto w-full max-w-[220px] object-contain transition duration-200 motion-safe:hover:scale-[1.03]"
                   />
                 </div>
@@ -104,8 +106,9 @@ export default function ProductosPage() {
                   <Image
                     src="/products/chulepancakes-platano/detail-2.png"
                     alt="Detalle 2 de ChulePancakes"
-                    width={320}
-                    height={320}
+                    width={1200}
+                    height={1600}
+                    sizes="220px"
                     className="h-auto w-full max-w-[220px] object-contain transition duration-200 motion-safe:hover:scale-[1.03]"
                   />
                 </div>
@@ -120,8 +123,8 @@ export default function ProductosPage() {
               <Image
                 src="/products/chulepancakes-platano/title.svg"
                 alt="ChulePancakes"
-                width={460}
-                height={150}
+                width={1150}
+                height={215}
                 className="h-auto w-full max-w-[380px] object-contain"
               />
 
