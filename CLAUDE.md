@@ -8,7 +8,7 @@ Sitio web de marketing de **Los Chules** (www.loschules.com), una marca artesana
 
 ## Stack
 
-- Next.js 16.3.8 (App Router, todas las rutas estáticas `○`) · React 19.2.3 · TypeScript 5 (`strict`)
+- Next.js 16.3.8 (App Router; estáticas `○` salvo `/productos` y `/productos/[linea]`, dinámicas `ƒ` porque leen `searchParams`) · React 19.2.3 · TypeScript 5 (`strict`)
 - Tailwind CSS v4 vía `@tailwindcss/postcss` (sin `tailwind.config`; se configura con `@import "tailwindcss"` en [app/globals.css](app/globals.css))
 - ESLint 9 flat config con `eslint-config-next` (core-web-vitals + typescript)
 - Fuente Poppins vía `next/font/google` (pesos 400–700), expuesta como `--font-poppins`
@@ -36,25 +36,53 @@ Si `tsc` falla con referencias a rutas que ya no existen (`.next/types/validator
 
 - [app/layout.tsx](app/layout.tsx) renderiza `<SkipLink />`, `<Header />` fijo y **un único** `<main id="contenido" className="pt-52 md:pt-56">`. Ese padding (208/224 px) compensa el header y es el único padding superior: las páginas usan `<div>`/`<section>` sin `pt-*` inicial. También declara la metadata global (`metadataBase`, `title.template`, canonical `./`, Open Graph, Twitter) y `<Analytics />`.
 - Rutas:
-  - `/`, `/productos` y `/contacto` están completas.
+  - `/`, `/contacto`, `/productos` (catálogo) y `/productos/[linea]` (página por línea) están completas. Ver la sección **Productos**.
   - `/nosotros` es un placeholder con `noindex`, fuera de la navegación, de la home y del sitemap.
   - `/ecosistema` se eliminó.
   - `app/not-found.tsx` es la 404 en español.
-  - `robots.ts` y `sitemap.ts` generan `/robots.txt` y `/sitemap.xml`; el sitemap solo incluye `/`, `/productos` y `/contacto`.
+  - `robots.ts` y `sitemap.ts` generan `/robots.txt` y `/sitemap.xml`; el sitemap incluye `/`, `/productos`, una URL por línea (`/productos/<slug>`, generada desde `getLineas()`) y `/contacto`.
   - `opengraph-image.tsx`, `icon.tsx` y `apple-icon.tsx` generan en build imágenes a partir de `public/logo.png` mediante [lib/logo-image.tsx](lib/logo-image.tsx), sin modificar el logo.
-- [lib/site.ts](lib/site.ts) es la **fuente única de datos de negocio**: número de WhatsApp (y sus formatos visibles), `TEL_URL`, mensajes precargados, handle y URL de Instagram, `SITE_URL` y `PRODUCT` (nombre, precio, moneda). Incluye el helper `whatsappUrl(mensaje)`. No volver a escribir estos valores en páginas o componentes.
+- [lib/site.ts](lib/site.ts) es la **fuente única de datos de negocio**: número de WhatsApp (y sus formatos visibles), `TEL_URL`, mensajes precargados, handle y URL de Instagram, `SITE_URL` y `PRODUCT` (constante antigua, ya sin uso: el precio vive en `lib/productos.ts`). Incluye los helpers `whatsappUrl(mensaje)`, `mensajePedido(linea, sabor)` y `mensajePedidoUrl(linea, sabor)`. No volver a escribir estos valores en páginas o componentes.
 - [lib/metadata.ts](lib/metadata.ts) exporta `pageMetadata({ title, description })`. Úsalo en cada página: un `openGraph` definido en una página reemplaza entero al del layout (imagen incluida).
 - Client Components:
   - [components/layout/Header.tsx](components/layout/Header.tsx): `navItems`, CTA "Pedir ahora" visible también en móvil y menú móvil. El estado abierto se guarda como la ruta en la que se abrió, así que se cierra solo al cambiar de ruta. También se cierra con Escape.
   - [components/layout/SkipLink.tsx](components/layout/SkipLink.tsx): mueve el foco a `#contenido` sin añadir un hash al historial. Un hash nativo deja la página anterior pintada al pulsar "Atrás".
-  - [components/WhatsAppLink.tsx](components/WhatsAppLink.tsx): todo enlace a WhatsApp debe usarlo. Registra `track("whatsapp_click", { origen })` con `origen` ∈ `header | barra-productos | producto | cierre | contacto`.
-- `/productos` incluye JSON-LD (`Organization` + `Product`/`Offer`) y una barra fija inferior con CTA por debajo de `lg`, junto con un espaciador que evita que tape el final de la página.
+  - [components/WhatsAppLink.tsx](components/WhatsAppLink.tsx): todo enlace a WhatsApp debe usarlo. Registra `track("whatsapp_click", { origen, sabor? })` con `origen` ∈ `header | barra-productos | producto | cierre | contacto | producto-<slug>`; las páginas de línea envían también el id del sabor.
 - Imágenes de producto en `public/products/<slug>/` (`cover.png`, `detail-N.png` de 1200×1600, `title.svg` de 1150×215). Declarar siempre las dimensiones reales y un `sizes` en `next/image`. El logo es `public/logo.png` (1062×1054).
 - [next.config.ts](next.config.ts) define:
   - `turbopack.root`: conservarlo.
   - `images.formats`: AVIF y WebP.
   - `headers()`: `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options: DENY` y `Permissions-Policy`. Sin CSP.
 - Alias de import: `@/*` → raíz del repo.
+
+## Productos
+
+- **Modelo** ([lib/productos.ts](lib/productos.ts)), fuente única de líneas, sabores y precios:
+  - `Categoria = "comida" | "otros"` (etiquetas en `CATEGORIAS`).
+  - `Linea { slug, nombre, categoria, portada, galeria, sabores }`: `portada` y `galeria` son imágenes con `src`, `alt` y dimensiones reales.
+  - `Sabor { id, nombre, descripcion, precio, presentacion, imagen?, logotipo? }`, con `precio` en soles. `imagen` y `logotipo` son propios del sabor (el `title.svg` actual dice "Plátano").
+  - Línea actual: `chulepancakes` (comida), con los sabores `platano` (S/ 18) y `camote` (descripción y precio `null`, POR CONFIRMAR).
+- **Regla del sabor activo:** un sabor solo se muestra si tiene `descripcion` **y** `precio` (`saboresActivos`). Una línea sin sabores activos no aparece en el catálogo, ni en el sitemap, y su página da 404. Para publicar el camote basta con rellenar sus dos campos; si no tiene `imagen`, se usa la portada de la línea.
+- **Helpers:**
+  - `getLineas(categoria?)`
+  - `getLinea(slug)`
+  - `saboresActivos(linea)`
+  - `getSabor(linea, id)`: si el id es inválido o el sabor está inactivo, devuelve el primer sabor activo.
+  - `nombreProducto(linea, sabor)` → "ChulePancakes de plátano"
+  - `formatPrecio(18)` → "S/ 18"
+- **`/productos` (catálogo):**
+  - Filtro `?categoria=todo|comida|otros` con enlaces de servidor, sin JS. El activo lleva `aria-current`; un valor desconocido equivale a "todo".
+  - Una tarjeta por línea, más las tarjetas discontinuas "Próximamente".
+- **`/productos/[linea]`:**
+  - `generateStaticParams` y `notFound()`.
+  - Selector `?sabor=<id>` con `<Link replace scroll={false}>`, visible solo si hay más de un sabor activo.
+  - Canonical sin query.
+  - JSON-LD `Organization` + `Product`, con un `Offer` por sabor activo.
+  - Barra fija de WhatsApp por debajo de `lg`.
+- **`mensajePedido(linea, sabor)`** ([lib/site.ts](lib/site.ts)) devuelve `"Hola, quiero pedir ChulePancakes de plátano.
+Nombre:
+Cantidad:
+Dirección:"`, y `mensajePedidoUrl` su enlace `wa.me`. Las constantes `WHATSAPP_MESSAGES` siguen en uso en la home, el header y `/contacto`.
 
 ## Convenciones detectadas
 
@@ -81,7 +109,7 @@ Ninguna. El código no lee `process.env` y no existe `.env*` (están en `.gitign
 ## Integraciones externas
 
 - **WhatsApp** (`wa.me/51997712366`) con mensajes precargados URL-encoded, generados por `whatsappUrl()` desde [lib/site.ts](lib/site.ts). Si cambia el número o un mensaje, se edita solo ahí.
-- **Teléfono** `tel:+51997712366`: el mismo número, mostrado como enlace en `/productos` y `/contacto`.
+- **Teléfono** `tel:+51997712366`: el mismo número, mostrado como enlace en `/productos/[linea]` y `/contacto`.
 - **Instagram** `@los_chules_pets`, en [lib/site.ts](lib/site.ts) y usado en `/contacto` y en el JSON-LD.
 - **Yape** solo mencionado como texto.
 - **Vercel Web Analytics**: páginas vistas más el evento `whatsapp_click`. Para ver datos hay que activar Web Analytics en el proyecto de Vercel. Que los eventos personalizados estén disponibles en el plan actual sigue POR CONFIRMAR.
@@ -95,7 +123,7 @@ Ninguna. El código no lee `process.env` y no existe `.env*` (están en `.gitign
 - No inventar copy. Si hace falta texto nuevo, se deja un `TODO` y se pide al usuario.
 - No reemplazar `public/logo.png` ni los assets de `public/products/` sin pedirlo, y no generar derivados de imagen como archivos.
 - Antes de dar un cambio por bueno: `npm run lint`, `npx tsc --noEmit` y `npm run build` (los tres pasan limpios).
-- Revisar móvil y escritorio. El header cambia a menú hamburguesa por debajo de `md`, y la barra fija de `/productos` aparece por debajo de `lg`.
+- Revisar móvil y escritorio. El header cambia a menú hamburguesa por debajo de `md`, y la barra fija de `/productos/[linea]` aparece por debajo de `lg`.
 - Al añadir una página nueva a la navegación, editar `navItems` en `Header.tsx`, darle `metadata` con `pageMetadata()` y añadirla a `app/sitemap.ts`.
 
 ## Correcciones a la auditoría inicial
@@ -131,3 +159,12 @@ Pendiente:
 - Redirección apex → `www` con 307 (configurar 308 en Vercel).
 - `npm audit` (incluyendo dev) sigue mostrando 5 vulnerabilidades altas en la cadena de `eslint-config-next`. Solo se corrigen con `--force`, que bajaría a `eslint-config-next@14`: no aplicar.
 - Repo dentro de OneDrive (`node_modules` y `.next` se sincronizan).
+
+## Plan del ecosistema
+
+- [x] **1. Datos de productos**: `lib/productos.ts` y `mensajePedido`.
+- [x] **2. Catálogo y página por línea**: `/productos` y `/productos/[linea]`.
+- [ ] **3. Inicio rediseñado** (escritorio y móvil). Incluye pasar la home, el header y `/contacto` al nuevo mensaje de pedido o al catálogo, y retirar `PRODUCT` y `WHATSAPP_MESSAGES.pedido` si dejan de usarse.
+- [ ] **4. Podcast** en `/podcast` (Spotify: https://open.spotify.com/show/6wlvtKn3QbZtrYX4FTagt1).
+- [ ] **5. Enlaces** en `/enlaces`, dentro del sitio, para la bio de Instagram.
+- [ ] **6. Novedades**, cuando haya contenido real.
