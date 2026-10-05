@@ -12,18 +12,18 @@ export const TEL_URL = `tel:+${WHATSAPP_NUMBER}`;
 
 export const WHATSAPP_MESSAGES = {
   info: "Hola, quiero información sobre Los Chules 🐶",
-  pedido: "Hola, quiero pedir ChulePancakes de plátano 🐶",
 } as const;
 
 export const INSTAGRAM_HANDLE = "los_chules_pets";
 export const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`;
 
-export const PRODUCT = {
-  name: "ChulePancakes de plátano",
-  price: 18,
-  priceLabel: "S/ 18",
-  currency: "PEN",
-} as const;
+// Podcast "Guau, Qué Amor".
+export const SPOTIFY_SHOW_ID = "6wlvtKn3QbZtrYX4FTagt1";
+export const SPOTIFY_URL = `https://open.spotify.com/show/${SPOTIFY_SHOW_ID}`;
+export const SPOTIFY_EMBED_URL = `https://open.spotify.com/embed/show/${SPOTIFY_SHOW_ID}`;
+// TODO: completar cuando existan. Mientras sean null no se muestran.
+export const APPLE_PODCASTS_URL: string | null = null;
+export const YOUTUBE_URL: string | null = null;
 
 export function whatsappUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

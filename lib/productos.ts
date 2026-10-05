@@ -135,3 +135,29 @@ export function nombreProducto(linea: Linea, sabor: Sabor): string {
 export function formatPrecio(precio: number): string {
   return `S/ ${Number.isInteger(precio) ? precio : precio.toFixed(2)}`;
 }
+
+const CANTIDADES = ["cero", "un", "dos", "tres", "cuatro", "cinco", "seis"];
+
+/** 2 -> "dos" */
+export function cantidadEnLetras(n: number): string {
+  return CANTIDADES[n] ?? String(n);
+}
+
+/** ["a", "b", "c"] -> "a, b y c" */
+export function listaNatural(items: string[], conector = "y"): string {
+  return items.length <= 1
+    ? items.join("")
+    : `${items.slice(0, -1).join(", ")} ${conector} ${items[items.length - 1]}`;
+}
+
+/** Nombres de los sabores activos en minúscula: ["plátano", "camote"] */
+export function nombresSabores(linea: Linea): string[] {
+  return saboresActivos(linea).map((sabor) =>
+    sabor.nombre.toLocaleLowerCase("es"),
+  );
+}
+
+/** "plátano y camote" (o "plátano" con un solo sabor activo) */
+export function textoSabores(linea: Linea, conector = "y"): string {
+  return listaNatural(nombresSabores(linea), conector);
+}

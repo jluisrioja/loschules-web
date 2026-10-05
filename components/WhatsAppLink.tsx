@@ -1,6 +1,4 @@
-"use client";
-
-import { track } from "@vercel/analytics";
+import TrackedLink from "@/components/TrackedLink";
 import { whatsappUrl } from "@/lib/site";
 
 export type WhatsAppOrigen =
@@ -9,6 +7,10 @@ export type WhatsAppOrigen =
   | "producto"
   | "cierre"
   | "contacto"
+  | "inicio"
+  | "enlaces"
+  | "novedades"
+  | "novedades-promo"
   | `producto-${string}`;
 
 type WhatsAppLinkProps = {
@@ -21,6 +23,7 @@ type WhatsAppLinkProps = {
   children: React.ReactNode;
 };
 
+// Enlace a WhatsApp con el mensaje precargado; registra whatsapp_click con su origen.
 export default function WhatsAppLink({
   message,
   origen,
@@ -30,17 +33,14 @@ export default function WhatsAppLink({
   children,
 }: WhatsAppLinkProps) {
   return (
-    <a
+    <TrackedLink
       href={whatsappUrl(message)}
-      target="_blank"
-      rel="noopener noreferrer"
+      evento="whatsapp_click"
+      datos={sabor ? { origen, sabor } : { origen }}
       className={className}
-      onClick={() => {
-        track("whatsapp_click", sabor ? { origen, sabor } : { origen });
-        onClick?.();
-      }}
+      onClick={onClick}
     >
       {children}
-    </a>
+    </TrackedLink>
   );
 }
