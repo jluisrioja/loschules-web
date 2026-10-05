@@ -1,4 +1,4 @@
-﻿import {
+import {
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
   TEL_URL,
