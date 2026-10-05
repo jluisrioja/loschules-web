@@ -16,8 +16,8 @@ export const metadata = pageMetadata({
 
 export default function ContactoPage() {
   return (
-    <main className="bg-[#F3E7D3] text-[#4A2E1F]">
-      <section className="mx-auto max-w-6xl px-6 pb-16 pt-28 md:px-10 md:pb-20 md:pt-32">
+    <div className="bg-[#F3E7D3] text-[#4A2E1F]">
+      <section className="mx-auto max-w-6xl px-6 pb-16 md:px-10 md:pb-20">
         <div className="max-w-3xl">
           <p className="mb-4 inline-flex rounded-full border border-[#4A2E1F]/10 bg-white/60 px-4 py-2 text-sm text-[#4A2E1F]/75 shadow-sm">
             Hablemos 🐾
@@ -83,6 +83,6 @@ export default function ContactoPage() {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

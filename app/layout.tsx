@@ -40,7 +40,7 @@ export default function RootLayout({
       >
         <SkipLink />
         <Header />
-        <main id="contenido" tabIndex={-1} className="pt-24 outline-none">
+        <main id="contenido" tabIndex={-1} className="pt-52 outline-none md:pt-56">
           {children}
         </main>
         <Analytics />

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-16 pt-28 md:px-10 md:pb-24 md:pt-32">
+    <section className="mx-auto max-w-6xl px-6 pb-16 md:px-10 md:pb-24">
       <div className="max-w-2xl">
         <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
           404

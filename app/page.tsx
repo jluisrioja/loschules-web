@@ -11,9 +11,9 @@ export const metadata = pageMetadata({
 
 export default function HomePage() {
   return (
-    <main className="bg-[#F3E7D3] text-[#4A2E1F]">
+    <div className="bg-[#F3E7D3] text-[#4A2E1F]">
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-6 pb-16 pt-28 md:px-10 md:pb-24 md:pt-32">
+      <section className="mx-auto max-w-6xl px-6 pb-16 md:px-10 md:pb-24">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
           <div className="max-w-2xl">
             <p className="mb-5 inline-flex rounded-full border border-[#4A2E1F]/10 bg-white/60 px-4 py-2 text-sm text-[#4A2E1F]/75 shadow-sm">
@@ -181,6 +181,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
