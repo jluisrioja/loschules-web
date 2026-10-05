@@ -5,8 +5,8 @@ import {
   TEL_URL,
   WHATSAPP_DISPLAY,
   WHATSAPP_MESSAGES,
-  whatsappUrl,
 } from "@/lib/site";
+import WhatsAppLink from "@/components/WhatsAppLink";
 
 export default function ProductosPage() {
   return (
@@ -98,14 +98,13 @@ export default function ProductosPage() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href={whatsappUrl(WHATSAPP_MESSAGES.pedido)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <WhatsAppLink
+                  message={WHATSAPP_MESSAGES.pedido}
+                  origen="producto"
                   className="rounded-full bg-[#4A2E1F] px-7 py-3.5 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
                 >
                   Pedir por WhatsApp
-                </a>
+                </WhatsAppLink>
 
                 <Link
                   href="/contacto"
@@ -145,14 +144,13 @@ export default function ProductosPage() {
               </p>
 
               <div className="mt-8">
-                <a
-                  href={whatsappUrl(WHATSAPP_MESSAGES.pedido)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <WhatsAppLink
+                  message={WHATSAPP_MESSAGES.pedido}
+                  origen="producto"
                   className="inline-flex rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
                 >
                   Ir a WhatsApp
-                </a>
+                </WhatsAppLink>
               </div>
             </div>
 
@@ -190,14 +188,13 @@ export default function ProductosPage() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={whatsappUrl(WHATSAPP_MESSAGES.pedido)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              message={WHATSAPP_MESSAGES.pedido}
+              origen="cierre"
               className="rounded-full bg-[#DDB45A] px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
             >
               Pedir ahora
-            </a>
+            </WhatsAppLink>
 
             <Link
               href="/contacto"
@@ -222,14 +219,13 @@ export default function ProductosPage() {
             </p>
           </div>
 
-          <a
-            href={whatsappUrl(WHATSAPP_MESSAGES.pedido)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={WHATSAPP_MESSAGES.pedido}
+            origen="barra-productos"
             className="shrink-0 rounded-full bg-[#4A2E1F] px-5 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm"
           >
             Pedir por WhatsApp
-          </a>
+          </WhatsAppLink>
         </div>
       </div>
     </main>

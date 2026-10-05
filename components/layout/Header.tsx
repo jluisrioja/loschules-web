@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { WHATSAPP_MESSAGES, whatsappUrl } from "@/lib/site";
+import WhatsAppLink from "@/components/WhatsAppLink";
+import { WHATSAPP_MESSAGES } from "@/lib/site";
 
 const navItems = [
   { label: "Inicio", href: "/" },
@@ -61,14 +62,13 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           {/* CTA (visible también en móvil) */}
-          <a
-            href={whatsappUrl(WHATSAPP_MESSAGES.info)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={WHATSAPP_MESSAGES.info}
+            origen="header"
             className="inline-flex rounded-full bg-[#DDB45A] px-4 py-2 text-sm font-medium text-[#4A2E1F] shadow-sm transition hover:scale-[1.03] md:px-5"
           >
             Pedir ahora
-          </a>
+          </WhatsAppLink>
 
           {/* BOTÓN MOBILE */}
           <button
@@ -106,15 +106,14 @@ export default function Header() {
               );
             })}
 
-            <a
-              href={whatsappUrl(WHATSAPP_MESSAGES.info)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              message={WHATSAPP_MESSAGES.info}
+              origen="header"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-[#DDB45A] px-5 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm"
             >
               Pedir ahora
-            </a>
+            </WhatsAppLink>
           </nav>
         </div>
       )}

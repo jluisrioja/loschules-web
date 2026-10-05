@@ -4,8 +4,8 @@
   TEL_URL,
   WHATSAPP_DISPLAY_INTERNATIONAL,
   WHATSAPP_MESSAGES,
-  whatsappUrl,
 } from "@/lib/site";
+import WhatsAppLink from "@/components/WhatsAppLink";
 
 export default function ContactoPage() {
   return (
@@ -38,14 +38,13 @@ export default function ContactoPage() {
             </p>
 
             <div className="mt-6">
-              <a
-                href={whatsappUrl(WHATSAPP_MESSAGES.info)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppLink
+                message={WHATSAPP_MESSAGES.info}
+                origen="contacto"
                 className="inline-flex rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
               >
                 Escríbenos por WhatsApp
-              </a>
+              </WhatsAppLink>
             </div>
           </div>
 
