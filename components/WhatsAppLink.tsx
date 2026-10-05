@@ -8,11 +8,14 @@ export type WhatsAppOrigen =
   | "barra-productos"
   | "producto"
   | "cierre"
-  | "contacto";
+  | "contacto"
+  | `producto-${string}`;
 
 type WhatsAppLinkProps = {
   message: string;
   origen: WhatsAppOrigen;
+  /** Id del sabor pedido, se envía junto al evento. */
+  sabor?: string;
   className?: string;
   onClick?: () => void;
   children: React.ReactNode;
@@ -21,6 +24,7 @@ type WhatsAppLinkProps = {
 export default function WhatsAppLink({
   message,
   origen,
+  sabor,
   className,
   onClick,
   children,
@@ -32,7 +36,7 @@ export default function WhatsAppLink({
       rel="noopener noreferrer"
       className={className}
       onClick={() => {
-        track("whatsapp_click", { origen });
+        track("whatsapp_click", sabor ? { origen, sabor } : { origen });
         onClick?.();
       }}
     >
