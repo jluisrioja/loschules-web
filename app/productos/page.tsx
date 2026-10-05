@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 import Image from "next/image";
+import { WHATSAPP_DISPLAY, WHATSAPP_MESSAGES, whatsappUrl } from "@/lib/site";
 
 export default function ProductosPage() {
   return (
@@ -89,13 +90,14 @@ export default function ProductosPage() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href="https://wa.me/51997712366?text=Hola%2C%20quiero%20pedir%20ChulePancakes%20de%20pl%C3%A1tano%20%F0%9F%90%B6"
+                <a
+                  href={whatsappUrl(WHATSAPP_MESSAGES.pedido)}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="rounded-full bg-[#4A2E1F] px-7 py-3.5 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
                 >
                   Pedir por WhatsApp
-                </Link>
+                </a>
 
                 <Link
                   href="/contacto"
@@ -129,17 +131,18 @@ export default function ProductosPage() {
               </p>
 
               <p className="mt-2 text-4xl font-semibold tracking-tight">
-                997 712 366
+                {WHATSAPP_DISPLAY}
               </p>
 
               <div className="mt-8">
-                <Link
-                  href="https://wa.me/51997712366?text=Hola%2C%20quiero%20pedir%20ChulePancakes%20de%20pl%C3%A1tano%20%F0%9F%90%B6"
+                <a
+                  href={whatsappUrl(WHATSAPP_MESSAGES.pedido)}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
                 >
                   Ir a WhatsApp
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -177,13 +180,14 @@ export default function ProductosPage() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="https://wa.me/51997712366?text=Hola%2C%20quiero%20pedir%20ChulePancakes%20de%20pl%C3%A1tano%20%F0%9F%90%B6"
+            <a
+              href={whatsappUrl(WHATSAPP_MESSAGES.pedido)}
               target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-[#DDB45A] px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
             >
               Pedir ahora
-            </Link>
+            </a>
 
             <Link
               href="/contacto"

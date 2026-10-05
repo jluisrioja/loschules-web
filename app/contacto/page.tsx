@@ -1,4 +1,10 @@
-﻿import Link from "next/link";
+﻿import {
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  WHATSAPP_DISPLAY_INTERNATIONAL,
+  WHATSAPP_MESSAGES,
+  whatsappUrl,
+} from "@/lib/site";
 
 export default function ContactoPage() {
   return (
@@ -25,17 +31,18 @@ export default function ContactoPage() {
             <div className="text-3xl">💬</div>
             <h2 className="mt-4 text-2xl font-semibold">WhatsApp</h2>
             <p className="mt-4 text-base leading-8 text-[#4A2E1F]/80">
-              +51 997 712 366
+              {WHATSAPP_DISPLAY_INTERNATIONAL}
             </p>
 
             <div className="mt-6">
-              <Link
-                href="https://wa.me/51997712366?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Los%20Chules%20%F0%9F%90%B6"
+              <a
+                href={whatsappUrl(WHATSAPP_MESSAGES.info)}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex rounded-full bg-[#4A2E1F] px-6 py-3 text-sm font-medium text-[#F3E7D3] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:opacity-95"
               >
                 Escríbenos por WhatsApp
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -44,17 +51,18 @@ export default function ContactoPage() {
             <div className="text-3xl">📷</div>
             <h2 className="mt-4 text-2xl font-semibold">Instagram</h2>
             <p className="mt-4 text-base leading-8 text-[#4A2E1F]/80">
-              @los_chules_pets
+              {`@${INSTAGRAM_HANDLE}`}
             </p>
 
             <div className="mt-6">
-              <Link
-                href="https://instagram.com/los_chules_pets"
+              <a
+                href={INSTAGRAM_URL}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex rounded-full border border-[#4A2E1F]/15 bg-white/70 px-6 py-3 text-sm font-medium text-[#4A2E1F] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white"
               >
                 Ver Instagram
-              </Link>
+              </a>
             </div>
           </div>
         </div>
